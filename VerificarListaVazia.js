@@ -2,7 +2,7 @@
 const MensagemListaVazia = document.querySelector(".mensagem-lista-vazia");
 
 //Define a função que verifia a lista
-function verificarListaVazia(ListaDeCompras) {
+function VerificarListaVazia(ListaDeCompras) {
     //Seleciona todos os elementos <li> dentro da lista de compras
     //O js retorna como um array (lista)
     const ItemDaLista = ListaDeCompras.querySelectorAll("li");
@@ -15,4 +15,4 @@ function verificarListaVazia(ListaDeCompras) {
     }
 }
 
-export default verificarListaVazia;
+export default VerificarListaVazia;

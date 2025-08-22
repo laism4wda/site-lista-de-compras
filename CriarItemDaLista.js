@@ -1,5 +1,10 @@
 //Exporta a constante 'inputItem' para que ela possa ser usar em outros arquivos JavaScript
 // Essa constante está ligada ao elemento HTML com o id "input-item" (geralmente um campo <input>)
+//import GerarDiaDaSemana from "./GerarDiaDaSemana.js";
+import VerificarListaVazia from "./VerificarListaVazia.js";
+import GerarDiaDaSemana from "./GerarDiaDaSemana.js";
+
+const ListaDeCompras = document.getElementById("lista-de-compas");
 export const InputItem = document.getElementById("input-item");
 
 let contador = 0;
@@ -48,8 +53,39 @@ export function CriarItemDaLista() {
     //Adiciona o <p> como o nome do item dentro da <div> (o container).
     ContainerItemDaLista.appendChild(NomeItem);
 
+    //Cria um elemento <button>
+    const botao = document.createElement("button");
+    botao.classList.add("botao-excluir");
+    //Cria um elemento "ícone"
+    const IconeExcluir = document.createElement("i");
+    IconeExcluir.className = "bi bi-trash";
+    //Adicona uma "mãozinha" com a sobreposição do mouse
+    botao.style.cursor = "pointer";
+    //Adiciona o botão e o ícone excluir dentro do container da lsta
+    ContainerItemDaLista.appendChild(botao);
+    //Adiciona o ícone dentro do botão
+    botao.appendChild(IconeExcluir);
+
+    botao.addEventListener("click", function( ){
+        const confirmacao = confirm("Deseja realmente deletar esse item?");
+        if (confirmacao){
+            ItemDaLista.remove().
+            alert("Item deletado");
+            VerificarListaVazia(ListaDeCompras);
+        }
+    });
+
     //Adiciona a <div> dentro do <li>, fomando a estrutura final do item.
     ItemDaLista.appendChild(ContainerItemDaLista);
+
+    //Gerar dia da semana e horário
+    const DataCompleta = GerarDiaDaSemana();
+    //<p>
+    const itemData = document.createElement("p");
+
+    itemData.innerText = DataCompleta;
+    itemData.classList.add("texto-data");
+    ItemDaLista.appendChild(itemData);
 
     //Retorna o <li> completo, que já contém o item digitado, pronto para ser adicionado nalista.
     return ItemDaLista;
